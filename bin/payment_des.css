@@ -1,0 +1,378 @@
+/* GENERAL & BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #550000;
+    display: flex;
+    min-height: 100vh;
+    color: #550000;
+}
+
+.main-container {
+    width: 100%;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    padding-top: 100px;
+    padding-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+/* 2. HEADER & NAVIGATION (Maroon theme) */
+.main-header {
+    background-color: #550000;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+    box-sizing: border-box;
+}
+
+.logo-container img {
+    height: 50px;
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover,
+.main-nav a:active {
+    color: #d3d3d3 ;
+    border-bottom: 2px solid #ffffff ;
+}
+
+.logout-btn {
+    background-color: #7b0000;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #6e0101;
+}
+
+/* SHARED FORM CARD & ELEMENTS */
+.form-container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.form-heading {
+    background-color: #a12f2f;
+    color: #550000;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    margin: -2rem -2rem 2rem -2rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center; 
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+    width: 100%; 
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; 
+}
+
+.btn-submit {
+    background-color: #a12f2f;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+
+    display: block;         
+    margin-left: auto;      
+    margin-right: auto;   
+}
+
+.btn-submit:hover {
+    background-color: #7b0000;
+}
+
+.form-actions-center {
+    text-align: left;
+    margin-top: 2rem;
+}
+
+/* GENERAL MODAL STYLES (Applies to all pop-ups) */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #550000;
+}
+
+.modal-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #550000;
+    margin-bottom: 1rem;
+}
+
+.modal-body {
+    background-color: #f0f2f5;
+    padding: 2rem;
+    border-radius: 10px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-size: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-btn.yes-btn, .modal-btn.ok-btn {
+    background-color: #a12f2f; 
+    color: #550000;
+}
+
+.modal-btn.no-btn {
+    background-color: #ccc;
+    color: #555;
+}
+
+.modal-btn.yes-btn:hover { background-color: #6e0101; }
+.modal-btn.no-btn:hover { background-color: #bbb; }
+
+/* PAYMENT PAGE SPECIFIC STYLES */
+.payment-info-container {
+    max-width: 800px;
+}
+
+.payment-form-heading {
+    background-color: #a12f2f;
+    color: #ffffff;
+    font-size: 2rem;
+    padding: 1rem 0;
+    margin: -2rem -2rem 2rem -2rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center; 
+}
+
+.payment-content {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.payment-form-section{
+    flex: 1;
+    min-width: 300px;
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.payment-methods-section{
+    flex: 1;
+    min-width: 300px;
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+    margin-top: -30px; 
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #550000; 
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.payment-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 5px;
+    margin-bottom: 1rem;
+}
+
+.payment-icon1 {
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.payment-icon2 {
+    width: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin-top: -5px;
+}
+
+.payment-icon:hover {
+    transform: scale(1.05);
+}
+
+.add-file-btn {
+    width: 100%;
+    display: block; 
+    background-color: #eee;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+.add-file-btn:hover {
+    background-color: #ddd;
+}
+
+/* PAYMENT MODAL DESIGNS */
+.qr-image1{
+    width: 400px;
+    height: 600px;
+    margin-bottom: 1rem;
+}
+
+.qr-image2{
+    width: 400px;
+    height: 500px;
+    margin-bottom: 1rem;
+}
+
+.payment-complete-icon {
+    font-size: 3rem;
+    color: #28a745;
+    line-height: 1;
+}
+
+.claim-stub {
+    margin-top: 1.5rem;
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.download-btn {
+    background-color: #550000;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 20px;
+}

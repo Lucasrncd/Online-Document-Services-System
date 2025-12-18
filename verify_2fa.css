@@ -1,0 +1,217 @@
+/* Alternative CSS file if you prefer external stylesheet */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #550000;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.verification-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-container {
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.verification-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.email-display {
+    background: #f0f0f0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.code-input-container {
+    margin-bottom: 25px;
+}
+
+.code-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.code-input:focus {
+    outline: none;
+    border-color: #8B0000;
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+.verify-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 15px;
+}
+
+.verify-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+}
+
+.verify-btn:active {
+    transform: translateY(0);
+}
+
+.resend-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.resend-text {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: #8B0000;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.resend-btn:hover {
+    color: #DC143C;
+}
+
+.back-to-login {
+    display: inline-block;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-to-login:hover {
+    color: #8B0000;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    animation: fadeIn 0.3s;
+}
+
+.alert-error {
+    background: #fee;
+    color: #c33;
+    border: 1px solid #fcc;
+}
+
+.alert-success {
+    background: #efe;
+    color: #3c3;
+    border: 1px solid #cfc;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.timer {
+    color: #999;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .verification-container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .code-input {
+        font-size: 20px;
+        letter-spacing: 10px;
+    }
+}

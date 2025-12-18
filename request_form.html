@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Request Form</title>
+    <link rel="stylesheet" href="request_des1.css">
+    <link rel="icon" type="image/png" href="assets/logo.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="./assets/logo.png" alt="CAS Logo" class="header-logo">
+            </div>
+            <nav class="main-nav">
+                <a href="Main.php#home-section" class="active">Home</a>
+                <a href="Main.php#about-section">About</a>
+                <a href="Main.php#guidelines-section">Guidelines</a>
+                <a href="Main.php#contacts-section">Contacts</a>
+                <a href="payment_info.php">Payment</a>
+                <a href="status.html">Status</a>
+                <a href="profile.php" class="active">Profile</a>
+            </nav>
+            <a href="login.php" class="logout-btn">Logout</a>
+        </header>
+
+
+        <div class="content-wrapper">
+            <div class="form-container">
+                <h2 class="form-heading">Request Form</h2>
+                <!--FORM SECTION-->
+                <form action="requestbackend.php" method="POST">
+                    <div class="form-content-grid">
+                        <div class="form-section">
+                            <h3 class="section-title">Applicant's Information</h3>
+                            <div class="grid-2-col">
+                                <div class="form-group">
+                                    <label for="full-name">Full Name</label>
+                                    <input type="text" id="full-name" name="full-name" readonly required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="student-number">Student Number</label>
+                                    <input type="text" id="student-number" name="student-number" readonly required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="college">College</label>
+                                    <select id="college" name="college" required>
+                                        <option value="">Loading...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="course">Course</label>
+                                    <select id="course" name="course" required>
+                                        <option value="">Loading...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="purpose">Purpose</label>
+                                    <input type="text" id="purpose" name="purpose" required placeholder="e.g., Enrollment">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3 class="section-title">Contact Details</h3>
+                            <div class="grid-2-col">
+                                <div class="form-group">
+                                    <label for="contact-number">Contact Number</label>
+                                    <input type="text" id="contact-number" name="contact-number" readonly required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address" name="address" readonly required>
+                                </div>
+                                <div class="form-group full-span">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" readonly required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--BTN-->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-next">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Course data for each college
+        const coursesData = {
+            'COS': ['BSCS', 'BAS-LT', 'BSES', 'BSIS', 'BSIT'],
+            'CAFA': ['BSA', 'BFA', 'BGT - AT', 'BGT - ID', 'BGT - MDT'],
+            'CIE': ['BTLE-ICT', 'BTLE-HE', 'BTLE-IA', 'BTVTE-A', 'BTVTE-BCW', 'BTVTE-CP', 'BTVTE-Electrical', 'BTVTE-Electronics', 'BTVTE-FSM', 'BTVTE-FG', 'BTVTE-HVAC', 'BTTE'],
+            'CIT': ['BSFT', 'BET-CpET', 'BET-CT', 'BET-EET', 'BET-ECET', 'BET-EsT', 'BET-ICET', 'BET-MET', 'BET-MT', 'BET-RET', 'BET-AET', 'BET-FET', 'BET-HVAC', 'BET-PPET', 'BET-WET', 'BET-DMT', 'BT-AFT', 'BT-CT', 'BT-CLT', 'BT-PMT'],
+            'COE': ['BSCE', 'BSEE', 'BSECE', 'BSME'],
+            'CLA': ['BSBA-IM', 'BSE', 'BSHM']
+        };
+
+        // Fetch user data when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            fetch('get_user_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Populate full name
+                        document.getElementById('full-name').value = data.firstName + ' ' + data.lastName;
+                        
+                        // Populate contact details
+                        document.getElementById('email').value = data.email || '';
+                        document.getElementById('contact-number').value = data.contactNumber || '';
+                        document.getElementById('address').value = data.address || '';
+                        
+                        // Populate student number
+                        document.getElementById('student-number').value = data.studentNumber || '';
+                        
+                        // Populate college dropdown
+                        const collegeSelect = document.getElementById('college');
+                        collegeSelect.innerHTML = `
+                            <option value="">Select College</option>
+                            <option value="COS">COS - College of Science</option>
+                            <option value="CAFA">CAFA - College of Architecture and Fine Arts</option>
+                            <option value="CIE">CIE - College of Industrial Education</option>
+                            <option value="CIT">CIT - College of Industrial Technology</option>
+                            <option value="COE">COE - College of Engineering</option>
+                            <option value="CLA">CLA - College of Liberal Arts</option>
+                        `;
+                        
+                        // Set college value and make it readonly styled
+                        if (data.college) {
+                            collegeSelect.value = data.college;
+                            collegeSelect.style.backgroundColor = '#f5f5f5';
+                            collegeSelect.style.cursor = 'not-allowed';
+                            collegeSelect.style.pointerEvents = 'none'; // Prevent interaction but allow form submission
+                            
+                            // Populate courses based on college
+                            const courseSelect = document.getElementById('course');
+                            courseSelect.innerHTML = '<option value="">Select Course</option>';
+                            
+                            if (coursesData[data.college]) {
+                                coursesData[data.college].forEach(course => {
+                                    const option = document.createElement('option');
+                                    option.value = course;
+                                    option.textContent = course;
+                                    courseSelect.appendChild(option);
+                                });
+                                
+                                // Set the user's course and make it readonly styled
+                                if (data.course) {
+                                    courseSelect.value = data.course;
+                                    courseSelect.style.backgroundColor = '#f5f5f5';
+                                    courseSelect.style.cursor = 'not-allowed';
+                                    courseSelect.style.pointerEvents = 'none'; // Prevent interaction but allow form submission
+                                }
+                            }
+                        }
+                    } else {
+                        alert('Error loading user data. Please try again.');
+                        window.location.href = 'login.php';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to load user information.');
+                });
+        });
+    </script>
+</body>
+</html>

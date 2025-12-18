@@ -1,0 +1,222 @@
+:root{
+    --red: #550000;
+    --yellow:#a12f2f; 
+    --gray: #555;
+    --black: #000000;
+}
+
+/* 1. GENERAL & BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--red);
+
+    display: flex;
+    min-height: 100vh;
+    color: #222;
+}
+
+.main-container {
+    width: 100%;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    padding-top: 100px;
+    padding-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+/* 2. LOGIN PAGE */
+.login-container {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    height: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: auto; 
+}
+
+.login-left {
+    flex: 1.5;
+    background-color: var(--red);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.login-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.academy-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.1; 
+    margin-bottom: 0.5rem;
+}
+
+.academy-location {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    color: #f0f2f5;
+}
+
+.login-right {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 380px;
+}
+
+.login-card {
+    width: 80%;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.login-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 2.5rem;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 1rem; 
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.3rem; 
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #a12f2f;
+    outline: none;
+}
+
+/* Password Options Section */
+.password-options {
+    display: flex;
+    justify-content: flex-start; /* keep items to the left */
+    align-items: center; /* vertically align checkbox and text */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.show-password-label {
+    display: flex;
+    align-items: center; /* vertically center checkbox and text */
+    font-size: 0.75rem;
+    color: #555;
+    cursor: pointer;
+    user-select: none;
+}
+
+.show-password-label input[type="checkbox"] {
+    margin-right: 0.5rem; /* space between checkbox and text */
+    cursor: pointer;
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #a12f2f;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem; 
+    display: block;
+}
+
+.login-btn:hover {
+    background-color: #6e0101;
+}
+
+/*DELETE
+.create-account-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.create-account-link:hover {
+    color: #a12f2f; 
+}
+
+.login-footer {
+    margin-top: 2rem; 
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+}
+
+.login-footer p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.footer-email {
+    color: #a12f2f;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block; 
+}
+*/
+
+/* 3. RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .login-container {
+        flex-direction: column;
+        height: auto;
+        max-width: 450px;
+    }
+
+    .login-left {
+        flex: none;
+        padding: 3rem 2rem;
+    }
+
+    .login-right {
+        min-width: unset;
+    }
+}

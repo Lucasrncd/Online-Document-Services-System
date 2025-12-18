@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="reg_des.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">Registration Form</div>
+        <div class="form-content">
+            <div class="left-section" >
+                <!--FORM SECTION-->
+                <form action="reg_process.php" method="POST">
+                    <div class="form-section">
+                        <h3>Applicant's Information</h3>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                        </div>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="middleName">Middle Name</label>
+                                <input type="text" id="middleName" name="middleName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="extName">Extension Name</label>
+                                <input type="text" id="extName" name="extName" required>
+                            </div>
+                        </div>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="contactNumber">Contact Number</label>
+                                <input type="text" id="contactNumber" name="contactNumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Account Details</h3>
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Email must have more than 5 characters" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Password must have at least 8 characters." required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password must have at least 8 characters." required>
+                        </div>
+                    </div>
+        
+                    <!--BTN-->
+                    <div class="form-actions">
+                        <a href="login.html" class="back-btn" id="backBtn">Back</a>
+                        <button type="submit" class="register-btn" id="registerBtn">Register</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="privacy-notice">
+                <h3>DATA PRIVACY NOTICE</h3>
+                <div class="privacy-text">
+                    <b>We value and protect your personal information in compliance with the Data Privacy Act of 2012 (RA 10173). All data will be kept secure and confidential by the <span class="highlight">Cyberion Academy of Science</span> only. The information will serve as a reference for communication. Any personal information will not be disclosed without your consent.</b>
+                </div>
+                <div class="privacy-choice">
+                    <input type="checkbox" id="accept" name="privacy_accept" value="accept">
+                    <label for="accept">
+                        <b>I hereby acknowledge that I have read, and <span class="accept">do</span> accept the Data Privacy Policy contained in this form.</b>
+                    </label>
+                </div>
+                <div class="privacy-choice">
+                    <input type="checkbox" id="decline" name="privacy_decline" value="decline">
+                    <label for="decline">
+                        <b>I hereby acknowledge that I have read, and <span class="accept">do not</span> accept the Data Privacy Policy contained in this form.</b>
+                    </label>
+                </div>
+            </div>
+
+            <!--END-->
+        </div>
+    </div>
+
+     <!-- SCRIPT -->
+    <script>
+        const accept = document.getElementById('accept');
+        const decline = document.getElementById('decline');
+        const registerBtn = document.getElementById('registerBtn');
+
+        function updateRegisterState() {
+            // Disable register if "do not accept" is checked or "accept" is unchecked
+            if (accept.checked && !decline.checked) {
+                registerBtn.disabled = false;
+            } else {
+                registerBtn.disabled = true;
+            }
+        }
+
+        // Ensure only one checkbox can be selected at a time
+        accept.addEventListener('change', () => {
+            if (accept.checked) {
+                decline.checked = false;
+            }
+            updateRegisterState();
+        });
+
+        decline.addEventListener('change', () => {
+            if (decline.checked) {
+                accept.checked = false;
+            }
+            updateRegisterState();
+        });
+
+        // Run on page load
+        updateRegisterState();
+    </script>
+</body>
+</html>

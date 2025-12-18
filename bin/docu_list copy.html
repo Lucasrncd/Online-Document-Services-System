@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technological University of the Philippines</title>
+    <link rel="stylesheet" href="docu_des.css">
+    <link rel="icon" type="image/png" href="assets/logo.png?v=2">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="./assets/logo.png" alt="TUP Logo" class="header-logo">
+        </div>
+        <nav class="main-nav">
+            <a href="Main.php#home-section" class="active">Home</a>
+            <a href="Main.php#about-section">About</a>
+            <a href="Main.php#guidelines-section">Guidelines</a>
+            <a href="Main.php#contacts-section">Contacts</a>
+            <a href="payment_info.html">Payment</a>
+            <a href="status.html">Status</a>
+        </nav>
+        <a href="login.php" class="logout-btn">Logout</a>
+    </header>
+
+    <div class="container">
+        <div class="header">Document List</div>
+        <div class="content">
+            <!--FORM SECTION-->
+            <form action="#">
+                <table class="table">
+                    <tr>
+                        <th>Request for:</th>
+                        <th>Price</th>
+                        <th>No. of copies</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="diploma"> Diploma</td>
+                        <td>550 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="transcript"> Transcript of Records</td>
+                        <td>241 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="honorable"> Honorable Dismissal</td>
+                        <td>146 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="grades"> Certification of Grades</td>
+                        <td>146 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="graduation"> Certification of Graduation</td>
+                        <td>146 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="units"> Certification of Units Earned</td>
+                        <td>146 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="enrollment"> Certification of Enrollment</td>
+                        <td>146 pesos</td>
+                        <td><input type="number" min="0" max="2"value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="document" value="authentication"> DFA/CHED authentication of Student's Record</td>
+                        <td>584 pesos</td>
+                        <td><input type="number" min="0" max="2" value="0" class="copies"></td>
+                        <td class="amount">0</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3" class="total-label">Total:</td>
+                        <td class="amount total-amount">0</td>
+                    </tr>
+                </table>
+            </form>
+
+            <div class="note">
+                <span>If the document/s you wish to request are not listed above, kindly contact the registrar at</span>
+                <span class="email">uitc@tup.edu.ph</span>
+                <span>for further assistance.</span>
+            </div>
+        </div>
+            <div class="buttons">
+                <a href="request_form.html" class="back-btn">Back</a>
+                <a href="payment_info.html" class="submit-btn">Submit</a>
+            </div>
+    </div>
+
+    <!--SCRIPT FOR COMPUTATION-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.table tr:not(:first-child):not(.total-row)');
+            const totalAmount = document.querySelector('.total-amount');
+
+            rows.forEach(row => {
+                const checkbox = row.querySelector('input[type="checkbox"]');
+                const numberInput = row.querySelector('.copies');
+                const amountCell = row.querySelector('.amount');
+                const priceCell = row.querySelector('td:nth-child(2)');
+
+                // Initially disable the number input
+                numberInput.disabled = true;
+
+                // Enable/disable input based on checkbox
+                checkbox.addEventListener('change', () => {
+                    numberInput.disabled = !checkbox.checked;
+                    updateRow();
+                });
+
+                numberInput.addEventListener('input', updateRow);
+
+                function updateRow() {
+                    if (checkbox.checked) {
+                        const priceText = priceCell.textContent.replace(/[^0-9]/g, '');
+                        const price = parseInt(priceText) || 0;
+                        const copies = parseInt(numberInput.value) || 0;
+                        amountCell.textContent = price * copies;
+                    } else {
+                        amountCell.textContent = 0;
+                    }
+                    calculateTotal();
+                }
+            });
+
+            function calculateTotal() {
+                let total = 0;
+                rows.forEach(row => {
+                    const rowAmount = parseInt(row.querySelector('.amount').textContent) || 0;
+                    total += rowAmount;
+                });
+                totalAmount.textContent = total;
+            }
+        });
+    </script>
+    
+</body>
+</html>

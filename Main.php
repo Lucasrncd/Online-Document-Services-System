@@ -1,0 +1,147 @@
+<?php
+session_start();
+
+// Check if user is logged in and redirect if not
+if (!isset($_SESSION['reg_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technological University of the Philippines</title>
+    <link rel="stylesheet" href="main_nav.css">
+    <link rel="icon" type="image/png" href="assets/logo.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <header class="main-header">
+            <div class="logo-container">
+                <img src="./assets/logo.png" alt="CAS Logo" class="header-logo">
+            </div>
+            <nav class="main-nav">
+                <a href="Main.php#home-section" class="active">Home</a>
+                <a href="Main.php#about-section">About</a>
+                <a href="Main.php#guidelines-section">Guidelines</a>
+                <a href="Main.php#contacts-section">Contacts</a>
+                <a href="payment_info.php">Payment</a>
+                <a href="status.html">Status</a>
+                <a href="profile.php">Profile</a>
+            </nav>
+            <a href="login.php" class="logout-btn">Logout</a>
+        </header>
+
+        <div id="home-section" class="content-wrapper home-page-content">
+            <div class="home-text-container">
+                <h1 class="welcome-heading">WELCOME TO THE TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES ONLINE DOCUMENT SERVICES SYSTEM</h1>
+                <p class="welcome-text">
+                    Say goodbye to traditional document request methods <br>
+                    and embrace the power of digital accessibility! <br>
+                </p>
+                <a href="request_form.html" class="btn-request">Request Document Now!</a>
+            </div>
+        </div>
+
+        <div id="about-section" class="content-wrapper">
+            <h2 class="page-title-heading" id="about-title">About</h2>
+            
+            <div class="about-policy-grid">
+                <div class="info-container mission-container">
+                    <h2 class="info-heading">Mission</h2>
+                    <div class="info-content">
+                        <p>The mission of TUP is stated in Section 2 of P.D. No. 1518 as follows:</p>
+                        <p>The University shall provide higher and advanced vocational, technical, industrial, technological and professional education and training in industries and technology, and in practical arts leading to certificates, diplomas and degrees. It shall provide progressive leadership in applied research, developmental studies in technical, industrial, and technological fields and production using indigenous materials; effect technology transfer in the countryside; and assist in the development of small-and-medium scale industries in identified growth centers.</p>
+                    </div>
+                </div>
+
+                <div class="info-container vision-container">
+                    <h2 class="info-heading">Vision</h2>
+                    <div class="info-content">
+                        <p>TUP: A premier state university with recognized excellence in engineering and technology education at par with leading universities in the ASEAN region.</p>
+                    </div>
+                </div>
+
+                <div class="info-container quality-policy-container">
+                    <h2 class="info-heading">Quality Policy</h2>
+                    <div class="info-content">
+                        <p>TUP shall commit to provide quality higher and advanced education; conduct relevant research and extension projects; continually improve its value to customers through enhancement of personnel competence and effective quality management system compliant to statutory and regulatory requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="guidelines-section" class="content-wrapper guidelines-page-wrapper">
+            <h2 class="page-title-heading" id="guidelines-title">Guidelines</h2>
+            <div class="guidelines-container">
+                <div class="guidelines-step step-one">
+                    <h3 class="step-heading">Step 01</h3>
+                    <p class="step-text">Start by identifying the specific document you need to request. Common examples include transcripts, certifications, and authentication records.</p>
+                </div>
+                <div class="guidelines-step step-two">
+                    <h3 class="step-heading">Step 02</h3>
+                    <p class="step-text">Fill out the necessary forms accurately and ensure that all information is complete. Take a moment to review your details before submitting the form to prevent any processing delays.</p>
+                </div>
+                <div class="guidelines-step step-three">
+                    <h3 class="step-heading">Step 03</h3>
+                    <p class="step-text">Choose a payment method. Then scan the system-generated QR code and complete the payment. Upload the payment e-receipt and provide the request number and the reference number of the e-receipt.</p>
+                </div>
+                <div class="guidelines-step step-four">
+                    <h3 class="step-heading">Step 04</h3>
+                    <p class="step-text">After submitting your payment information, patiently wait the processing of your request by the Admin. Keep an eye on the Tracking bar to stay updated on the status of your document(s).</p>
+                </div>
+                <div class="guidelines-step step-five">
+                    <h3 class="step-heading">Step 05</h3>
+                    <p class="step-text">Once processed, collect the document from the CAS Registrar Office. Don't forget to bring your claim stub in claiming your document(s). Before leaving, carefully review the document to ensure its accuracy and completeness.</p>
+                </div>
+                <div class="guidelines-step step-six">
+                    <h3 class="step-heading">Step 06</h3>
+                    <p class="step-text">If you wish to cancel your request, you can go to Cancel Request section on Status, input the Request Number and the reason why you want to cancel the requested document(s). <span style="font-weight: bold; color: #ffe207;">Note: This is only applicable to those who have not yet paid for their requested document(s).</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="contacts-section" class="content-wrapper contacts-page-wrapper">
+            <div class="contacts-content-box"> 
+                <h2 class="contacts-heading">Contacts</h2>
+                <p class="contacts-message">
+                    Do you have a few questions? Contact us and we <br>
+                    will be more than happy to assist you.
+                </p>
+
+                <div class="contact-details-grid">
+                    <div class="office-info">
+                        <h3>Our Office</h3>
+                        <p class="contact-detail-item">
+                            <img src="./assets/phone-icon.png" alt="Phone Icon" class="contact-icon"> 
+                            (02) 301 3001
+                        </p>
+                        <p class="contact-detail-item">
+                            <img src="./assets/location-icon.png" alt="Location Icon" class="contact-icon"> 
+                            Ayala Blvd. corner San Marcelino St. Ermita, Manila, Philippines
+                        </p>
+                    </div>
+                    <div class="social-info">
+                        <h3>Keep Connected</h3>
+                        <p class="contact-detail-item">
+                            <img src="./assets/facebook-icon.png" alt="Facebook Icon" class="contact-icon"> 
+                            facebook.com/tupmanilaofficial
+                        </p>
+                        <p class="contact-detail-item">
+                            <img src="./assets/email-icon.png" alt="Email Icon" class="contact-icon"> 
+                            uitc@tup.edu.ph / registrar@tup.edu.ph
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="general-footer">
+            <p>Copyright &copy; 2025. Designed by <span>Group 4 BSCS - 3B</span></p>
+        </footer>
+    </div>
+</body>
+</html>

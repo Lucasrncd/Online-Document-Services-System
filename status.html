@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Tracking System</title>
+    <link rel="stylesheet" href="status_des4.css">
+    <link rel="icon" type="image/png" href="assets/logo.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--NAVBAR-->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="./assets/logo.png" alt="TUP Logo" class="header-logo">
+        </div>
+        <nav class="main-nav">
+            <a href="Main.php#home-section" class="active">Home</a>
+            <a href="Main.php#about-section">About</a>
+            <a href="Main.php#guidelines-section">Guidelines</a>
+            <a href="Main.php#contacts-section">Contacts</a>
+            <a href="payment_info.php">Payment</a>
+            <a href="status.html">Status</a>
+            <a href="profile.php" class="active">Profile</a>
+        </nav>
+        <a href="login.php" class="logout-btn">Logout</a>
+    </header>
+    
+    <!--CONTENT-->
+    <div class="content-wrapper">
+        <div id="tracking-form" class="tracking-container" style="display: none;">
+            <h2 class="form-heading">Tracking</h2>
+            <div style="display: flex; justify-content: space-between; gap: 2rem;">
+                
+                <div class="status-content" style="flex: 1;" >
+                    <!--FORM SECTION-->
+                    <form action="statusbackend.php" method="POST">
+                        <h3>Reference Number</h3>
+                        <input type="text" name="ref_num" placeholder="Enter Reference Number" required>
+                        <button type="submit" class="btn-submit">Search</button>
+                        <p class="tracking-note"><strong>Important:</strong> Please check your email for notifications regarding your requested document.</p>
+                    </form>
+                </div>
+    
+                <hr>
+                
+                <div class="cancel-content" style="flex: 1;" >
+                <!--FORM SECTION-->
+                    <form action="cancel_request.php" method="POST">
+                        <h3>Cancel Request</h3>
+                        <div class="form-group">
+                            <label for="ref_num">Reference Number</label>
+                            <input type="text" id="ref_num" name="ref_num" placeholder="Enter Reference Number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason for Cancellation</label>
+                            <textarea id="reason" name="reason" placeholder="Write your reason of cancellation here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit</button>
+                        <p class="reminder">You can only cancel your requested documents if <span>you have not yet paid for them.</span></p>
+                    </form>
+                </div>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <!--STATUS DISPLAY CONTAINERS-->
+        <div id="status-not-processed" class="tracking-container status-display" style="display: none;">
+            <h2 class="form-heading-status">Tracking</h2>
+            <div class="status-header">
+                <h3>Document Status: <span class="status-badge not-processed-badge">Not Processed</span></h3>
+            </div>
+            <p class="status-message">Your documents have not been processed yet. Please wait. Expect your status to be updated within 3-5 business days.<br><br>Kindly ensure that your payment has been completed. Please check your email for your payment verification.<br><br><span> Requests marked as ‘Unpaid’ will not be processed.</span></p>
+            <div class="status-actions">
+                <button class="modal-btn back-btn" onclick="backToTracking()">Back</button>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="registrar@tup.edu.ph">registrar@tup.edu.ph</a> or <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <div id="status-pending" class="tracking-container status-display" style="display: none;">
+            <h2 class="form-heading-status">Tracking</h2>
+            <div class="status-header">
+                <h3>Document Status: <span class="status-badge pending-badge">Pending</span></h3>
+            </div>
+            <p class="status-message">Your request is now pending. Please wait for the documents to be processed.</p>
+            <div class="status-actions">
+                <button class="modal-btn back-btn" onclick="backToTracking()">Back</button>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="registrar@tup.edu.ph">registrar@tup.edu.ph</a> or <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <div id="status-in-progress" class="tracking-container status-display" style="display: none;">
+            <h2 class="form-heading-status">Tracking</h2>
+            <div class="status-header">
+                <h3>Document Status: <span class="status-badge in-progress-badge">In Progress</span></h3>
+            </div>
+            <p class="status-message">Your document(s) are now being processed. Please wait for the release of the date of claiming.</p>
+            <div class="status-actions">
+                <button class="modal-btn back-btn" onclick="backToTracking()">Back</button>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="registrar@tup.edu.ph">registrar@tup.edu.ph</a> or <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <div id="status-ready" class="tracking-container status-display" style="display: none;">
+            <h2 class="form-heading-status">Tracking</h2>
+            <div class="status-header">
+                <h3>Document Status: <span class="status-badge ready-badge">Ready for Claiming</span></h3>
+            </div>
+            
+            <p class="status-message">
+                You may now claim your requested document(s) on <span><strong id="ready-claim-date"></strong></span> onwards. Please go to the TUP Registrar and present your Claim Stub / Valid ID / E-Receipt.
+            </p>
+
+            <div class="status-reminders" style="border-left: 3px solid #ffc107; padding-left: 15px; margin-top: 20px;">
+                <p style="font-weight: bold; margin-bottom: 5px;">CLAIMING REMINDERS:</p>
+                <ul style="list-style-type: disc; margin: 0; padding-left: 20px;">
+                    <li class="status-note" style="margin-bottom: 5px;">
+                        Please download or save the Claim Stub for your records. This document is accessible in your Profile section.
+                    </li>
+                    <li class="status-note" style="margin-bottom: 5px;">
+                        Please have your e-receipt, Valid ID, and the Claim Stub ready, as they may be requested by the registrar upon collection.
+                    </li>
+                    <li class="status-note">
+                        If a "third party" will claim the document on your behalf, they must present an Authorization Letter from the requestor and a photocopy of the Requestor's Valid ID, in addition to their own Valid ID.
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="status-actions" style="margin-top: 25px;">
+                <button class="modal-btn back-btn" onclick="backToTracking()">Back</button>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="registrar@tup.edu.ph">registrar@tup.edu.ph</a> or <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <div id="status-claimed" class="tracking-container status-display" style="display: none;">
+            <h2 class="form-heading-status">Tracking</h2>
+            <div class="status-header">
+                <h3>Document Status: <span class="status-badge claimed-badge">Claimed</span></h3>
+            </div>
+            <p class="status-message">You have claimed your requested document(s) on <strong id="claimed-claim-date"></strong>.</p>
+            <div class="status-actions">
+                <button class="modal-btn back-btn" onclick="backToTracking()">Back</button>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="registrar@tup.edu.ph">registrar@tup.edu.ph</a> or <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <div id="status-cancelled" class="tracking-container status-display" style="display: none;">
+            <h2 class="form-heading-status">Tracking</h2>
+            <div class="status-header">
+                <h3>Document Status: <span class="status-badge cancelled-badge">Cancelled</span></h3>
+            </div>
+            <p class="status-message">You have cancelled your request for the document(s).</p>
+            <div class="status-actions">
+                <button class="modal-btn back-btn" onclick="backToTracking()">Back</button>
+            </div>
+            <p class="status-footer">For more inquiries or concerns, please email <a href="registrar@tup.edu.ph">registrar@tup.edu.ph</a> or <a href="uitc@tup.edu.ph">uitc@tup.edu.ph</a>.</p>
+        </div>
+
+        <!--MODALS-->
+        <div id="cancel-failed-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="./assets/eks.png" alt="Cancel Logo" class="eks-logo">
+                <h2 class="modal-header" style="color: #dc3545;">Cancel Request Failed</h2>
+                <p class="status-message">You cannot cancel your request when you have already paid at the TUP cashier. A cancellation request can only be made when you are not paid for the requested document(s).</p>
+                <button class="modal-btn" onclick="window.location.href='status.html'">Back to Status</button>
+            </div>
+        </div>
+
+        <div id="not-found-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="./assets/eks.png" alt="Not Found Logo" class="eks-logo">
+                <h2 class="modal-header" style="color: #dc3545;">Reference Number Not Found</h2>
+                <p class="status-message">The reference number you entered does not exist in our system. Please check and try again.</p>
+                <button class="modal-btn" onclick="hideNotFoundModal()">Try Again</button>
+            </div>
+        </div>
+
+        <div id="unauthorized-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="./assets/eks.png" alt="Unauthorized Logo" class="eks-logo">
+                <h2 class="modal-header" style="color: #dc3545;">Access Denied</h2>
+                <p class="status-message">You can only view and manage your own document requests. This request belongs to another user.</p>
+                <button class="modal-btn" onclick="hideUnauthorizedModal()">Back to Status</button>
+            </div>
+        </div>
+
+        <div id="unauthorized-cancel-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="./assets/eks.png" alt="Unauthorized Logo" class="eks-logo">
+                <h2 class="modal-header" style="color: #dc3545;">Unauthorized Cancellation</h2>
+                <p class="status-message">Access Denied: You can only cancel your own requests. This request belongs to another user.</p>
+                <button class="modal-btn" onclick="hideUnauthorizedCancelModal()">Back to Status</button>
+            </div>
+        </div>
+
+        <div id="already-cancelled-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="./assets/eks.png" alt="Already Cancelled Logo" class="eks-logo">
+                <h2 class="modal-header" style="color: #dc3545;">Request Already Cancelled</h2>
+                <p class="status-message">This request has already been cancelled and cannot be processed again.</p>
+                <button class="modal-btn" onclick="hideAlreadyCancelledModal()">Back to Status</button>
+            </div>
+        </div>
+
+        <div id="cancel-success-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <img src="./assets/logo.png" alt="Success Logo" class="eks-logo">
+                <h2 class="modal-header" style="color: #28a745;">Cancellation Successful</h2>
+                <p class="status-message">Your request has been successfully cancelled.</p>
+                <button class="modal-btn" onclick="hideCancelSuccessModal()">Back to Status</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!--SCRIPT FOR CHANGING STATUS-->
+    <script>
+        function hideAll() {
+            const containers = document.querySelectorAll('.tracking-container');
+            containers.forEach(container => container.style.display = 'none');
+        }
+
+        function showTrackingForm() {
+            hideAll();
+            document.getElementById('tracking-form').style.display = 'block';
+        }
+
+        function backToTracking() {
+            showTrackingForm();
+            window.history.replaceState({}, document.title, "status.html");
+        }
+
+        function showCancelFailedModal() {
+            document.getElementById('cancel-failed-modal').style.display = 'flex';
+        }
+
+        function hideCancelFailedModal() {
+            document.getElementById('cancel-failed-modal').style.display = 'none';
+            window.location.href = 'status.html';
+        }
+
+        function showNotFoundModal() {
+            document.getElementById('not-found-modal').style.display = 'flex';
+        }
+
+        function hideNotFoundModal() {
+            document.getElementById('not-found-modal').style.display = 'none';
+            window.location.href = 'status.html';
+        }
+
+        function showUnauthorizedModal() {
+            document.getElementById('unauthorized-modal').style.display = 'flex';
+        }
+
+        function hideUnauthorizedModal() {
+            document.getElementById('unauthorized-modal').style.display = 'none';
+            window.location.href = 'status.html';
+        }
+
+        function showUnauthorizedCancelModal() {
+            document.getElementById('unauthorized-cancel-modal').style.display = 'flex';
+        }
+
+        function hideUnauthorizedCancelModal() {
+            document.getElementById('unauthorized-cancel-modal').style.display = 'none';
+            window.location.href = 'status.html';
+        }
+
+        function showAlreadyCancelledModal() {
+            document.getElementById('already-cancelled-modal').style.display = 'flex';
+        }
+
+        function hideAlreadyCancelledModal() {
+            document.getElementById('already-cancelled-modal').style.display = 'none';
+            window.location.href = 'status.html';
+        }
+
+        function showCancelSuccessModal() {
+            document.getElementById('cancel-success-modal').style.display = 'flex';
+        }
+
+        function hideCancelSuccessModal() {
+            document.getElementById('cancel-success-modal').style.display = 'none';
+            window.location.href = 'status.html';
+        }
+
+        function showStatusByProgress(progress, claimDate) {
+            hideAll();
+            
+            switch(progress.toLowerCase()) {
+                case 'not processed':
+                    document.getElementById('status-not-processed').style.display = 'block';
+                    break;
+                case 'pending':
+                    document.getElementById('status-pending').style.display = 'block';
+                    break;
+                case 'in progress':
+                    document.getElementById('status-in-progress').style.display = 'block';
+                    break;
+                case 'ready for claiming':
+                    document.getElementById('status-ready').style.display = 'block';
+                    if (claimDate) {
+                        document.getElementById('ready-claim-date').textContent = claimDate;
+                    }
+                    break;
+                case 'claimed':
+                    document.getElementById('status-claimed').style.display = 'block';
+                    if (claimDate) {
+                        document.getElementById('claimed-claim-date').textContent = claimDate;
+                    }
+                    break;
+                case 'cancelled':
+                    document.getElementById('status-cancelled').style.display = 'block';
+                    break;
+                default:
+                    document.getElementById('status-not-processed').style.display = 'block';
+            }
+        }
+
+        // Check URL parameters on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Check for cancel failed parameter
+            if (urlParams.get('cancel') === 'paid') {
+                showCancelFailedModal();
+                window.history.replaceState({}, document.title, "status.html");
+            }
+            // Check for unauthorized cancel
+            else if (urlParams.get('cancel') === 'unauthorized') {
+                showUnauthorizedCancelModal();
+                window.history.replaceState({}, document.title, "status.html");
+            }
+            // Check for already cancelled
+            else if (urlParams.get('cancel') === 'already_cancelled') {
+                showAlreadyCancelledModal();
+                window.history.replaceState({}, document.title, "status.html");
+            }
+            // Check for successful cancellation
+            else if (urlParams.get('cancel') === 'success') {
+                showCancelSuccessModal();
+                window.history.replaceState({}, document.title, "status.html");
+            }
+            // Check for unauthorized access
+            else if (urlParams.get('search') === 'unauthorized') {
+                showUnauthorizedModal();
+            }
+            // Check for search not found
+            else if (urlParams.get('search') === 'not_found') {
+                showNotFoundModal();
+            }
+            // Check for successful search - fetch data from session via AJAX
+            else if (urlParams.get('search') === 'success') {
+                fetchRequestData();
+            }
+            else {
+                showTrackingForm();
+            }
+        });
+
+        // Fetch request data from session
+        function fetchRequestData() {
+            fetch('get_request_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const progress = data.data.progress || 'Not Processed';
+                        const claimDate = data.data.claim_date || '';
+                        showStatusByProgress(progress, claimDate);
+                    } else {
+                        showNotFoundModal();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotFoundModal();
+                });
+        }
+    </script>
+</body>
+</html>

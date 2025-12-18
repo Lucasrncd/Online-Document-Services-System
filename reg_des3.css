@@ -1,0 +1,301 @@
+body {
+    background: #550000;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    max-width: 1200px;
+    margin: 24px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    padding: 0;
+    overflow: hidden;
+}
+
+.form-header {
+    background: #a12f2f;
+    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 32px 0 24px 0;
+    letter-spacing: 1px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    padding: 32px 40px 0 40px;
+    min-height: 480px;
+}
+
+.left-section {
+    flex: 1.2;
+}
+
+.privacy-notice {
+    flex: 1.1;
+    padding-left: 32px;
+    border-left: 2px solid #f3f3f3;
+}
+
+.form-section h3,
+.privacy-notice h3 {
+    color: #0a1a4f;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-top: 0;
+}
+
+.form-section {
+    margin-bottom: 32px;
+}
+
+.two-column {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #222;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    padding: 10px 12px;
+    border: 1.5px solid #d3d3d3;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border: 1.5px solid #0a1a4f;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.form-group select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    color: #999;
+}
+
+.form-group select option {
+    padding: 10px;
+}
+
+.privacy-text {
+    font-size: 1rem;
+    color: #222;
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.highlight {
+    color: #0a1a4f;
+}
+
+.privacy-choice {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.privacy-choice input[type="checkbox"] {
+    accent-color: #0a1a4f;
+    margin-right: 8px;
+    margin-top: 3px;
+}
+
+.accept {
+    color: #a12f2f;
+    font-weight: 700;
+}
+
+.decline {
+    color: #0a1a4f;
+    font-weight: 700;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 32px 40px 32px 40px;
+    background: #fff;
+    margin-right: 100px;
+}
+
+.back-btn {
+    background: #bdbdbd;
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    background: #a0a0a0;
+}
+
+.register-btn {
+    background: #a12f2f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.register-btn:hover {
+    background: #8b0000;
+}
+
+.register-btn:disabled {
+    background: #a12f2fb4;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+/* Password Requirements */
+.password-requirements {
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #6c757d;
+}
+
+.password-requirements ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.password-requirements li {
+    margin: 3px 0;
+    color: #dc3545;
+}
+
+.password-requirements li.valid {
+    color: #28a745;
+}
+
+.password-requirements li::before {
+    content: "✗ ";
+    font-weight: bold;
+}
+
+.password-requirements li.valid::before {
+    content: "✓ ";
+}
+
+/* Show Password Checkbox */
+.show-password-option {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.show-password-option input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+    accent-color: #0a1a4f;
+}
+
+.show-password-option label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    margin: 0;
+}
+
+/* Google Verified Badge */
+.google-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.google-verified-badge svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.verified-email-note {
+    background-color: #e3f2fd;
+    border-left: 4px solid #1976d2;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.verified-email-note p {
+    margin: 0;
+    color: #1565c0;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .form-content {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 16px 0 16px;
+    }
+    .privacy-notice {
+        padding-left: 0;
+        border-left: none;
+    }
+    .form-actions {
+        padding: 24px 16px 24px 16px;
+        margin-right: 0;
+    }
+}

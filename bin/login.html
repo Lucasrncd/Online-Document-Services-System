@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technological University of the Philippines</title>
+    <link rel="stylesheet" href="login_des.css">
+    <link rel="icon" type="image/png" href="assets/logo.png?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <img src="./assets/logo.png" alt="CAS_Logo" class="login-logo">
+            <h1 class="academy-name">TECHNOLOGICAL UNIVERSITY <br> OF THE PHILIPPINES</h1>
+            <p class="academy-location">Ayala Blvd., corner San Marcelino St., Ermita, Manila, 1000</p>
+        </div>
+        <div class="login-right">
+            <div class="login-card">
+                <h2 class="login-heading">Login</h2>
+                <!--FORM-->
+                <form action="validate_login.php" method="POST">
+                    <div class="input-group">
+                        <label for="studentEmail">Student Email</label>
+                        <input type="text" id="studentEmail" name="studentEmail" placeholder="Enter your student email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+
+                <div class="login-options">
+                    <a href="registration.php" class="create-account-link">Create a New Account</a>
+                </div>
+                
+                <div class="login-footer">
+                    <p>For concerns and inquiries, email us at:</p>
+                    <p class="footer-email">uitc@tup.edu.ph</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
